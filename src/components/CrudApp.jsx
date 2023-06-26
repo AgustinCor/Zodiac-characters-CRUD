@@ -35,7 +35,8 @@ const CrudApp = () => {
   const [dataToEdit, setDataToEdit] =useState(null)
 
   const createData =(data) =>{
-
+      data.id =Date.now()
+    setDb([...db,data])
   }
 
   const updateData=(data) =>{
