@@ -1,5 +1,5 @@
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const initialForm = {
     name:"",
@@ -9,6 +9,14 @@ const initialForm = {
 
 const CrudForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
    const [form,setForm] =useState(initialForm)
+
+   useEffect(() => {
+     if(dataToEdit){
+        setForm(dataToEdit);
+     }else{
+        setForm(initialForm);
+     }
+   },[dataToEdit])
 
     const handleChange =(e)=>{
         setForm({
@@ -41,7 +49,7 @@ const CrudForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
 
     return (
         <div>
-            <h3>Agregar</h3>
+            <h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
             <form onSubmit={handleSubmit}>
                 <input onChange={handleChange} value={form.name} type="text" name='name' placeholder='Nombre'/>
                 <input onChange={handleChange} value={form.constellation} type="text" name='constellation' placeholder='Constelation'/>

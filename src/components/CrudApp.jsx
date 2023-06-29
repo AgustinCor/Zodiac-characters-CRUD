@@ -40,10 +40,20 @@ const CrudApp = () => {
   }
 
   const updateData=(data) =>{
+    let newData =db.map(zodiac => zodiac.id === data.id ? data:zodiac)
+    setDb(newData);
   }
 
-  const deleteData=(data) =>{
-  }
+  const deleteData=(id) =>{
+    let isDelete = window.confirm(`Seguro quieres eliminar el id '${id}'?`);
+
+    if(isDelete){
+       let newData =db.filter(zodiac => zodiac.id !== id);
+       setDb(newData)
+    }else{
+        return;
+    }
+  };
 
     return (
      <div>
