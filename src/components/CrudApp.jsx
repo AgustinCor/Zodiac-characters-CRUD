@@ -34,26 +34,6 @@ const CrudApp = () => {
   const [db,setDb] =useState(initialDb)
   const [dataToEdit, setDataToEdit] =useState(null)
 
-  const createData =(data) =>{
-      data.id =Date.now()
-    setDb([...db,data])
-  }
-
-  const updateData=(data) =>{
-    let newData =db.map(zodiac => zodiac.id === data.id ? data:zodiac)
-    setDb(newData);
-  }
-
-  const deleteData=(id) =>{
-    let isDelete = window.confirm(`Seguro quieres eliminar el id '${id}'?`);
-
-    if(isDelete){
-       let newData =db.filter(zodiac => zodiac.id !== id);
-       setDb(newData)
-    }else{
-        return;
-    }
-  };
 
     return (
      <div>
