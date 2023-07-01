@@ -1,16 +1,14 @@
 import React from 'react';
 
-const CrudTableRow = ({zodiac, setDataToEdit, deleteData}) => {
-
-    let {name, constellation, id} =zodiac;
+const CrudTableRow = ({zodiac}) => {
 
     return (
         <tr>
-        <td>{name}</td>
-        <td>{constellation}</td>
+        <td>{zodiac.name}</td>
+        <td>{zodiac.constallation}</td>
         <td>
-        <button onClick={() => setDataToEdit(zodiac)}>Editar</button>
-        <button onClick={() => deleteData(id)}>Eliminar</button>
+        <button >Editar</button>
+        <button >Eliminar</button>
         </td>
     </tr>
     );

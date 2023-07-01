@@ -1,60 +1,39 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
-const initialForm = {
-    name:"",
-    constellation:"",
+const initialForm ={
     id:null,
+    name:"",
+    constellation:""
 }
 
-const CrudForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
-   const [form,setForm] =useState(initialForm)
+const CrudForm = () => {
 
-   useEffect(() => {
-     if(dataToEdit){
-        setForm(dataToEdit);
-     }else{
-        setForm(initialForm);
-     }
-   },[dataToEdit])
+  const [form,setForm] =useState(initialForm)
 
-    const handleChange =(e)=>{
-        setForm({
-           ...form,
-           [e.target.name]:e.target.value 
-        })
-    }
+  const handleChange =(e) =>{
+      setForm({
+        ...form,
+        [e.target.name]:e.target.value
+      })
+  }
 
-    const handleSubmit =(e) => {
-        e.preventDefault();
+  const handleSubmit =(e) =>{
 
-        if(!form.name || !form.constellation){
-            alert("Datos incompletos");
-            return;
-        }
+  }
 
-        if(form.id === null){
-          createData(form)
-        }else{
-            updateData(form)
-        }
+  const handleReset =(e) =>{
 
-        handleReset();
-    }
-
-    const handleReset =(e) =>{
-        setForm(initialForm)
-        setDataToEdit(null)
-    }
+  }
 
     return (
         <div>
-            <h3>{dataToEdit ? "Editar" : "Agregar"}</h3>
+            <h3>Agregar</h3>
             <form onSubmit={handleSubmit}>
-                <input onChange={handleChange} value={form.name} type="text" name='name' placeholder='Nombre'/>
-                <input onChange={handleChange} value={form.constellation} type="text" name='constellation' placeholder='Constelation'/>
-                <input type="submit" value='Enviar'/>
-                <input onClick={handleReset} type='reset' value='Limpiar'/>
+                <input onChange={handleChange} type="text" name='name' placeholder='name'/>
+                <input onChange={handleChange} type="text" name='constellation' placeholder='constellation'/>
+                <input type="submit" value="Enviar" />
+                <input onClick={handleReset} type="reset" value="Limpiar" />
             </form>
         </div>
     );
